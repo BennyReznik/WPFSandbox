@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace WPFSandbox.ViewModels
 {
-    public class ShellViewModel : Screen
+    public class ShellViewModel : Conductor<object>.Collection.OneActive
     {
+        private readonly Func<ChildOneViewModel> childOneViewModelFunctor;
         private string myVar;
 
         public string MyProperty
@@ -22,19 +23,18 @@ namespace WPFSandbox.ViewModels
             }
         }
 
-        public BindableCollection<object> MyViews { get; set; }
 
-
-        public ShellViewModel()
+        public ShellViewModel(Func<ChildOneViewModel> childOneViewModelFunctor)
         {
             MyProperty = "start";
-            MyViews = new BindableCollection<object>();
+            this.childOneViewModelFunctor = childOneViewModelFunctor;
         }
 
         public void AddPage()
         {
-            var viewModel = Bootstrapper.Container.Resolve<ChildOneViewModel>();
-            MyViews.Add(viewModel);
+            ChildOneViewModel childViewModel = childOneViewModelFunctor();
+            Items.Add(childViewModel);
+            //ActivateItem(childViewModel);
         }
     }
 }

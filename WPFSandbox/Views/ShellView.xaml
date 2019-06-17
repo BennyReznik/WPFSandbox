@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFSandbox.Views"
+        xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
         Title="ShellView" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
@@ -24,10 +25,17 @@
         <TextBox x:Name="MyProperty" MinWidth="100" Grid.Row="0" Grid.Column="1"></TextBox>
         <TextBlock Text="{Binding Path=MyProperty, Mode=OneWay}" MinWidth="200" Grid.Row="2" Grid.Column="1"></TextBlock>
         <Button x:Name="AddPage" MinWidth="100" Grid.Row="0" Grid.Column="2">Add Page</Button>
-        <ItemsControl ItemsSource="{Binding MyViews}" Grid.Row="5">
-            
-            
+        <!--<ContentControl Grid.Row="5" Grid.Column="0" x:Name="ActiveItem"></ContentControl>-->
+        <ItemsControl ItemsSource="{Binding Items}" Grid.Row="5">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl cal:View.Model="{Binding}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
         </ItemsControl>
+
+
+
 
 
     </Grid>
