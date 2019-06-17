@@ -36,5 +36,13 @@ namespace WPFSandbox.ViewModels
             Items.Add(childViewModel);
             //ActivateItem(childViewModel);
         }
+
+        public void RemovePage()
+        {
+            if (Items.Count > 0)
+            {
+                Items.Remove(Items.Last());
+            }
+        }
     }
 }

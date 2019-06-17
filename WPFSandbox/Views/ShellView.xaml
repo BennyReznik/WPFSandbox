@@ -25,6 +25,7 @@
         <TextBox x:Name="MyProperty" MinWidth="100" Grid.Row="0" Grid.Column="1"></TextBox>
         <TextBlock Text="{Binding Path=MyProperty, Mode=OneWay}" MinWidth="200" Grid.Row="2" Grid.Column="1"></TextBlock>
         <Button x:Name="AddPage" MinWidth="100" Grid.Row="0" Grid.Column="2">Add Page</Button>
+        <Button x:Name="RemovePage" MinWidth="100" Grid.Row="1" Grid.Column="2">Remove Page</Button>
         <!--<ContentControl Grid.Row="5" Grid.Column="0" x:Name="ActiveItem"></ContentControl>-->
         <ItemsControl ItemsSource="{Binding Items}" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="4">
             <ItemsControl.ItemTemplate>

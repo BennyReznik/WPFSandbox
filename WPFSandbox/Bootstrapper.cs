@@ -26,20 +26,20 @@ namespace WPFSandbox
                 .AsImplementedInterfaces()
                 .SingleInstance();
 
-            builder.RegisterType<ShellViewModel>()
-                .SingleInstance().AsSelf();
-
-            builder.RegisterType<ChildOneViewModel>();            
-
             builder.RegisterType<EventAggregator>()
                 .AsImplementedInterfaces()
                 .SingleInstance();
 
-            //GetType().Assembly.GetTypes()
-            //    .Where(t => t.IsClass)
-            //    .Where(t=> t.Name.EndsWith("ViewModel"))
-            //    .ToList()
-            //    .ForEach(vm => builder.RegisterType(vm,)
+            //builder.RegisterType<ShellViewModel>()
+            //    .SingleInstance().AsSelf();
+
+            //builder.RegisterType<ChildOneViewModel>();            
+
+            GetType().Assembly.GetTypes()
+                .Where(t => t.IsClass)
+                .Where(t => t.Name.EndsWith("ViewModel"))
+                .ToList()
+                .ForEach(type => builder.RegisterType(type).AsSelf());
 
             container = builder.Build();
         }
